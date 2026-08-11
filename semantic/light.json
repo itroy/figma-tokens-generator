@@ -1,0 +1,432 @@
+{
+  "bg": {
+    "canvas": {
+      "$value": "{color.neutral.50}",
+      "$type": "color",
+      "$description": "Page background."
+    },
+    "surface": {
+      "$value": "{color.neutral.0}",
+      "$type": "color",
+      "$description": "Cards, panels, sheets."
+    },
+    "raised": {
+      "$value": "{color.neutral.0}",
+      "$type": "color",
+      "$description": "Popovers, menus, tooltips."
+    },
+    "sunken": {
+      "$value": "{color.neutral.100}",
+      "$type": "color",
+      "$description": "Wells, code blocks, inset areas."
+    },
+    "muted": {
+      "$value": "{color.neutral.100}",
+      "$type": "color"
+    },
+    "hover": {
+      "$value": "{color.neutral.100}",
+      "$type": "color",
+      "$description": "Row and list-item hover."
+    },
+    "selected": {
+      "$value": "{color.brand.50}",
+      "$type": "color"
+    },
+    "inverse": {
+      "$value": "{color.neutral.900}",
+      "$type": "color",
+      "$description": "Tooltips and inverted bars."
+    },
+    "overlay": {
+      "$value": "{color.alpha.black-40}",
+      "$type": "color",
+      "$description": "Scrim behind modals."
+    },
+    "transparent": {
+      "$value": "{color.alpha.transparent}",
+      "$type": "color"
+    }
+  },
+  "fg": {
+    "default": {
+      "$value": "{color.neutral.900}",
+      "$type": "color"
+    },
+    "muted": {
+      "$value": "{color.neutral.600}",
+      "$type": "color",
+      "$description": "Secondary copy, helper text."
+    },
+    "subtle": {
+      "$value": "{color.neutral.500}",
+      "$type": "color",
+      "$description": "Placeholders, timestamps."
+    },
+    "disabled": {
+      "$value": "{color.neutral.400}",
+      "$type": "color"
+    },
+    "on-solid": {
+      "$value": "{color.neutral.0}",
+      "$type": "color",
+      "$description": "Text on a filled accent surface."
+    },
+    "inverse": {
+      "$value": "{color.neutral.0}",
+      "$type": "color"
+    },
+    "brand": {
+      "$value": "{color.brand.600}",
+      "$type": "color"
+    },
+    "link": {
+      "$value": "{color.brand.600}",
+      "$type": "color"
+    },
+    "link-hover": {
+      "$value": "{color.brand.700}",
+      "$type": "color"
+    }
+  },
+  "border": {
+    "subtle": {
+      "$value": "{color.neutral.200}",
+      "$type": "color",
+      "$description": "Dividers and hairlines."
+    },
+    "default": {
+      "$value": "{color.neutral.300}",
+      "$type": "color",
+      "$description": "Input and card outlines."
+    },
+    "strong": {
+      "$value": "{color.neutral.400}",
+      "$type": "color"
+    },
+    "brand": {
+      "$value": "{color.brand.500}",
+      "$type": "color"
+    },
+    "inverse": {
+      "$value": "{color.neutral.700}",
+      "$type": "color"
+    }
+  },
+  "focus": {
+    "ring": {
+      "$value": "{color.brand.500}",
+      "$type": "color"
+    },
+    "offset": {
+      "$value": "{color.neutral.0}",
+      "$type": "color"
+    },
+    "width": {
+      "$value": "{borderWidth.thick}",
+      "$type": "borderWidth"
+    }
+  },
+  "action": {
+    "primary": {
+      "bg": {
+        "$value": "{color.brand.600}",
+        "$type": "color"
+      },
+      "bg-hover": {
+        "$value": "{color.brand.700}",
+        "$type": "color"
+      },
+      "bg-active": {
+        "$value": "{color.brand.800}",
+        "$type": "color"
+      },
+      "bg-disabled": {
+        "$value": "{color.neutral.200}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.neutral.0}",
+        "$type": "color"
+      },
+      "fg-disabled": {
+        "$value": "{color.neutral.400}",
+        "$type": "color"
+      }
+    },
+    "secondary": {
+      "bg": {
+        "$value": "{color.neutral.0}",
+        "$type": "color"
+      },
+      "bg-hover": {
+        "$value": "{color.neutral.100}",
+        "$type": "color"
+      },
+      "bg-active": {
+        "$value": "{color.neutral.200}",
+        "$type": "color"
+      },
+      "bg-disabled": {
+        "$value": "{color.neutral.50}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{color.neutral.300}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.neutral.800}",
+        "$type": "color"
+      },
+      "fg-disabled": {
+        "$value": "{color.neutral.400}",
+        "$type": "color"
+      }
+    },
+    "ghost": {
+      "bg": {
+        "$value": "{color.alpha.transparent}",
+        "$type": "color"
+      },
+      "bg-hover": {
+        "$value": "{color.neutral.100}",
+        "$type": "color"
+      },
+      "bg-active": {
+        "$value": "{color.neutral.200}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.neutral.700}",
+        "$type": "color"
+      },
+      "fg-disabled": {
+        "$value": "{color.neutral.400}",
+        "$type": "color"
+      }
+    },
+    "destructive": {
+      "bg": {
+        "$value": "{color.danger.600}",
+        "$type": "color"
+      },
+      "bg-hover": {
+        "$value": "{color.danger.700}",
+        "$type": "color"
+      },
+      "bg-active": {
+        "$value": "{color.danger.800}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.neutral.0}",
+        "$type": "color"
+      }
+    }
+  },
+  "field": {
+    "bg": {
+      "$value": "{color.neutral.0}",
+      "$type": "color"
+    },
+    "bg-disabled": {
+      "$value": "{color.neutral.100}",
+      "$type": "color"
+    },
+    "border": {
+      "$value": "{color.neutral.300}",
+      "$type": "color"
+    },
+    "border-hover": {
+      "$value": "{color.neutral.400}",
+      "$type": "color"
+    },
+    "border-focus": {
+      "$value": "{color.brand.500}",
+      "$type": "color"
+    },
+    "border-error": {
+      "$value": "{color.danger.500}",
+      "$type": "color"
+    },
+    "fg": {
+      "$value": "{color.neutral.900}",
+      "$type": "color"
+    },
+    "placeholder": {
+      "$value": "{color.neutral.500}",
+      "$type": "color"
+    }
+  },
+  "status": {
+    "success": {
+      "surface": {
+        "$value": "{color.success.50}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{color.success.200}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.success.700}",
+        "$type": "color"
+      },
+      "solid": {
+        "$value": "{color.success.600}",
+        "$type": "color"
+      },
+      "solid-fg": {
+        "$value": "{color.neutral.0}",
+        "$type": "color"
+      }
+    },
+    "warning": {
+      "surface": {
+        "$value": "{color.warning.50}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{color.warning.200}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.warning.800}",
+        "$type": "color"
+      },
+      "solid": {
+        "$value": "{color.warning.400}",
+        "$type": "color"
+      },
+      "solid-fg": {
+        "$value": "{color.warning.950}",
+        "$type": "color"
+      }
+    },
+    "danger": {
+      "surface": {
+        "$value": "{color.danger.50}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{color.danger.200}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.danger.700}",
+        "$type": "color"
+      },
+      "solid": {
+        "$value": "{color.danger.600}",
+        "$type": "color"
+      },
+      "solid-fg": {
+        "$value": "{color.neutral.0}",
+        "$type": "color"
+      }
+    },
+    "info": {
+      "surface": {
+        "$value": "{color.info.50}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{color.info.200}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.info.700}",
+        "$type": "color"
+      },
+      "solid": {
+        "$value": "{color.info.600}",
+        "$type": "color"
+      },
+      "solid-fg": {
+        "$value": "{color.neutral.0}",
+        "$type": "color"
+      }
+    }
+  },
+  "elevation": {
+    "flat": {
+      "$type": "boxShadow",
+      "$value": [
+        {
+          "x": 0,
+          "y": 0,
+          "blur": 0,
+          "spread": 0,
+          "color": "#0E111800",
+          "type": "dropShadow"
+        }
+      ]
+    },
+    "raised": {
+      "$type": "boxShadow",
+      "$value": [
+        {
+          "x": 0,
+          "y": 1,
+          "blur": 2,
+          "spread": 0,
+          "color": "#0E11180F",
+          "type": "dropShadow"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "blur": 3,
+          "spread": 0,
+          "color": "#0E111814",
+          "type": "dropShadow"
+        }
+      ],
+      "$description": "Cards at rest."
+    },
+    "overlay": {
+      "$type": "boxShadow",
+      "$value": [
+        {
+          "x": 0,
+          "y": 4,
+          "blur": 8,
+          "spread": -2,
+          "color": "#0E111814",
+          "type": "dropShadow"
+        },
+        {
+          "x": 0,
+          "y": 2,
+          "blur": 4,
+          "spread": -2,
+          "color": "#0E11180F",
+          "type": "dropShadow"
+        }
+      ],
+      "$description": "Dropdowns, popovers, tooltips."
+    },
+    "modal": {
+      "$type": "boxShadow",
+      "$value": [
+        {
+          "x": 0,
+          "y": 16,
+          "blur": 32,
+          "spread": -8,
+          "color": "#0E111824",
+          "type": "dropShadow"
+        },
+        {
+          "x": 0,
+          "y": 4,
+          "blur": 8,
+          "spread": -4,
+          "color": "#0E111814",
+          "type": "dropShadow"
+        }
+      ]
+    }
+  }
+}

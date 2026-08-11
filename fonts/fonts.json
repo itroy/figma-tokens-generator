@@ -1,0 +1,67 @@
+{
+  "families": {
+    "IBM Plex Mono": {
+      "weights": [
+        "400",
+        "500",
+        "600",
+        "700"
+      ],
+      "italic": false
+    },
+    "IBM Plex Sans": {
+      "weights": [
+        "400",
+        "500",
+        "600",
+        "700"
+      ],
+      "italic": false
+    },
+    "Inter": {
+      "weights": [
+        "400",
+        "500",
+        "600",
+        "700"
+      ],
+      "italic": false
+    },
+    "Inter Tight": {
+      "weights": [
+        "400",
+        "500",
+        "600",
+        "700"
+      ],
+      "italic": false
+    },
+    "JetBrains Mono": {
+      "weights": [
+        "400",
+        "500",
+        "600",
+        "700"
+      ],
+      "italic": false
+    },
+    "Source Serif 4": {
+      "weights": [
+        "400",
+        "500",
+        "600",
+        "700"
+      ],
+      "italic": false
+    },
+    "Space Grotesk": {
+      "weights": [
+        "400",
+        "500",
+        "600",
+        "700"
+      ],
+      "italic": false
+    }
+  }
+}

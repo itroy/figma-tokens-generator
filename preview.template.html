@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design tokens — specimen</title>
+<link rel="stylesheet" href="./fonts/fonts.css">
+<style>
+
+/* ---------- primitives ---------- */
+:root {
+/*PRIMITIVES*/
+}
+
+/* ---------- semantic, per mode ---------- */
+[data-theme="light"] {
+/*LIGHT*/
+}
+
+[data-theme="dark"] {
+/*DARK*/
+}
+
+/* ---------- component ---------- */
+:root {
+/*COMPONENT*/
+}
+
+/* ---------- type scale ---------- */
+/*TYPESCALE*/
+
+/* ---------- page ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body, .swatch, .chip-color, .card, .btn, .menu, .menu-item, .tile, .elev,
+input, .badge, .bar, .sizer, .literal, aside, .nav a {
+  transition:
+    background-color var(--duration-normal) var(--easing-standard),
+    border-color var(--duration-normal) var(--easing-standard),
+    color var(--duration-normal) var(--easing-standard),
+    box-shadow var(--duration-normal) var(--easing-standard);
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  background: var(--bg-canvas);
+  color: var(--fg-default);
+  font-family: var(--font-family-body), system-ui, sans-serif;
+  font-size: var(--font-size-md);
+  line-height: var(--font-lineHeight-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+code, .tname, .literal, .spec, .chip-step, .chip-hex, .nav a, .hop {
+  font-family: var(--font-family-mono), ui-monospace, monospace;
+  font-variant-ligatures: none;
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* ---------- sidebar ---------- */
+aside {
+  position: sticky;
+  top: 0;
+  flex: none;
+  width: 232px;
+  height: 100vh;
+  padding: var(--space-6) var(--space-4);
+  border-right: var(--borderWidth-thin) solid var(--border-subtle);
+  background: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  overflow-y: auto;
+}
+.wordmark {
+  font-family: var(--font-family-display), sans-serif;
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  letter-spacing: var(--font-letterSpacing-tight);
+  margin: 0;
+}
+.wordmark span { color: var(--fg-subtle); font-weight: 500; display: block;
+  font-family: var(--font-family-mono), monospace; font-size: var(--font-size-2xs);
+  letter-spacing: var(--font-letterSpacing-wide); text-transform: uppercase; margin-top: var(--space-1); }
+
+.toggle {
+  display: flex;
+  padding: var(--space-half);
+  gap: var(--space-half);
+  background: var(--bg-sunken);
+  border-radius: var(--radius-md);
+}
+.toggle button {
+  flex: 1;
+  border: 0;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--fg-muted);
+  font: inherit;
+  font-family: var(--font-family-mono), monospace;
+  font-size: var(--font-size-2xs);
+}
+.toggle button[aria-pressed="true"] {
+  background: var(--bg-surface);
+  color: var(--fg-default);
+  box-shadow: var(--elevation-raised);
+}
+
+.nav { display: flex; flex-direction: column; gap: 1px; }
+.nav a {
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  padding-left: var(--space-3);
+  border-left: var(--borderWidth-thick) solid transparent;
+  color: var(--fg-muted);
+  text-decoration: none;
+  font-size: var(--font-size-xs);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.nav a:hover { background: var(--bg-hover); color: var(--fg-default); }
+.nav a[aria-current="true"] {
+  border-left-color: var(--border-brand);
+  color: var(--fg-brand);
+  background: var(--bg-selected);
+}
+.panel {
+  border: var(--borderWidth-thin) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  background: var(--bg-canvas);
+}
+.panel summary {
+  cursor: pointer; font-size: var(--font-size-2xs);
+  font-family: var(--font-family-mono), monospace;
+  text-transform: uppercase; letter-spacing: var(--font-letterSpacing-wide);
+  color: var(--fg-muted);
+}
+.panel[open] summary { margin-bottom: var(--space-3); }
+.ctl {
+  display: block; font-size: var(--font-size-2xs);
+  font-family: var(--font-family-mono), monospace;
+  color: var(--fg-subtle); margin: var(--space-3) 0 var(--space-1);
+}
+.brand-pick { display: flex; gap: var(--space-2); }
+.brand-pick input[type=color] {
+  width: 34px; height: 30px; padding: 0; cursor: pointer;
+  border: var(--borderWidth-thin) solid var(--border-default);
+  border-radius: var(--radius-sm); background: transparent;
+}
+.brand-pick input[type=text], .panel select {
+  flex: 1; min-width: 0; height: 30px;
+  padding: 0 var(--space-2);
+  border: var(--borderWidth-thin) solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--field-bg); color: var(--field-fg);
+  font-family: var(--font-family-mono), monospace; font-size: var(--font-size-2xs);
+}
+.panel select { width: 100%; }
+.hint {
+  font-size: var(--font-size-2xs); font-family: var(--font-family-mono), monospace;
+  color: var(--fg-subtle); margin: var(--space-2) 0 0; line-height: var(--font-lineHeight-snug);
+}
+.hint.warn { color: var(--status-warning-fg); }
+.hint.ok { color: var(--status-success-fg); }
+.panel-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+.panel-actions .btn { flex: 1 1 auto; }
+
+.legend { margin-top: auto; color: var(--fg-subtle); font-size: var(--font-size-2xs);
+  font-family: var(--font-family-mono), monospace; line-height: var(--font-lineHeight-snug); }
+
+/* ---------- main ---------- */
+main { flex: 1; min-width: 0; padding: var(--space-12) var(--space-10) var(--space-24); }
+.font-warning {
+  max-width: 70ch; margin: 0 0 var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  border: var(--borderWidth-thin) solid var(--status-warning-border);
+  background: var(--status-warning-surface);
+  color: var(--status-warning-fg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-mono), monospace;
+  font-size: var(--font-size-2xs);
+  line-height: var(--font-lineHeight-snug);
+}
+
+.intro { max-width: 60ch; margin-bottom: var(--space-16); }
+.intro h1 {
+  font-family: var(--font-family-display), sans-serif;
+  font-size: var(--font-size-4xl); font-weight: 700;
+  line-height: var(--font-lineHeight-tight);
+  letter-spacing: var(--font-letterSpacing-tight);
+  margin: 0 0 var(--space-3);
+}
+.intro p { color: var(--fg-muted); margin: 0; }
+
+section { max-width: 900px; margin-bottom: var(--space-20); scroll-margin-top: var(--space-6); }
+section h2 {
+  font-family: var(--font-family-display), sans-serif;
+  font-size: var(--font-size-2xl); font-weight: 600;
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--borderWidth-thin) solid var(--border-default);
+}
+section h3 {
+  font-size: var(--font-size-2xs); font-weight: 600;
+  font-family: var(--font-family-mono), monospace;
+  text-transform: uppercase; letter-spacing: var(--font-letterSpacing-wider);
+  color: var(--fg-subtle);
+  margin: var(--space-10) 0 var(--space-3);
+}
+section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono), monospace;
+  font-weight: 500; color: var(--fg-muted); margin: 0 0 var(--space-2); }
+.blurb { color: var(--fg-muted); margin: var(--space-3) 0 var(--space-6); max-width: 62ch; }
+.aside { color: var(--fg-subtle); font-size: var(--font-size-sm); max-width: 62ch; }
+
+/* ---------- specimen rows: the alias chain ---------- */
+.rows { border-top: var(--borderWidth-thin) solid var(--border-subtle); }
+.row {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: var(--borderWidth-thin) solid var(--border-subtle);
+}
+.swatch {
+  flex: none; width: 40px; height: 40px;
+  border-radius: var(--radius-sm);
+  border: var(--borderWidth-thin) solid var(--border-subtle);
+}
+.row-body { min-width: 0; }
+.tname {
+  border: 0; background: transparent; padding: 0; cursor: pointer;
+  font-size: var(--font-size-xs); color: var(--fg-default);
+  display: block; text-align: left;
+}
+.tname:hover { color: var(--fg-link); }
+.chain {
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1);
+  margin-top: var(--space-half);
+  font-size: var(--font-size-2xs); color: var(--fg-subtle);
+}
+.chain i { font-style: normal; opacity: .5; }
+.hop { overflow-wrap: anywhere; }
+.hop:last-of-type { color: var(--fg-muted); }
+.literal {
+  font-size: var(--font-size-2xs); padding: 1px var(--space-1);
+  border: var(--borderWidth-thin) solid var(--border-subtle);
+  border-radius: var(--radius-xs); color: var(--fg-muted);
+}
+[data-theme="light"] .chain-dark { display: none; }
+[data-theme="dark"] .chain-light { display: none; }
+
+/* ---------- brand hero ---------- */
+.hero { display: grid; grid-template-columns: 140px 1fr; gap: var(--space-6); margin-bottom: var(--space-10); }
+.hero-mark { display: flex; flex-direction: column; gap: var(--space-1); }
+.hero-swatch { flex: 1; min-height: 44px; border-radius: var(--radius-md); }
+.hero-copy p { margin: 0 0 var(--space-4); color: var(--fg-muted); }
+.hero-copy code { font-size: var(--font-size-sm); color: var(--fg-default); }
+.hero-pairs { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.pair { padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); }
+.pair b { display: block; font-family: var(--font-family-display), sans-serif; font-size: var(--font-size-2xl); }
+.pair span { font-family: var(--font-family-mono), monospace; font-size: var(--font-size-2xs); opacity: .85; }
+
+/* ---------- ramps ---------- */
+.ramps { display: flex; flex-direction: column; gap: var(--space-6); }
+.chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(74px, 1fr)); gap: var(--space-1); }
+.chip { border: 0; background: transparent; padding: 0; cursor: pointer; text-align: left; display: block; }
+.chip-color {
+  display: block; height: 52px; border-radius: var(--radius-sm);
+  border: var(--borderWidth-thin) solid var(--border-subtle);
+}
+.chip:hover .chip-color { border-color: var(--border-strong); }
+.chip-step { display: block; font-size: var(--font-size-2xs); color: var(--fg-default); margin-top: var(--space-1); }
+.chip-hex { display: block; font-size: var(--font-size-2xs); color: var(--fg-subtle); }
+.checker {
+  background-image:
+    linear-gradient(45deg, var(--color-neutral-200) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--color-neutral-200) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--color-neutral-200) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--color-neutral-200) 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0;
+}
+
+/* ---------- typography ---------- */
+.type-row {
+  display: grid; grid-template-columns: 210px 1fr; gap: var(--space-6);
+  padding: var(--space-5) 0;
+  border-bottom: var(--borderWidth-thin) solid var(--border-subtle);
+  align-items: baseline;
+}
+.type-meta .spec { display: block; font-size: var(--font-size-2xs); color: var(--fg-subtle); margin-top: var(--space-half); }
+.specimen { min-width: 0; overflow-wrap: anywhere; }
+
+/* ---------- scales ---------- */
+.scale { display: flex; flex-direction: column; }
+.scale-row {
+  display: grid; grid-template-columns: 190px minmax(0, 1fr) auto; gap: var(--space-4);
+  align-items: center; padding: var(--space-2) 0;
+  border-bottom: var(--borderWidth-thin) solid var(--border-subtle);
+}
+.bar { height: 10px; max-width: 100%; border-radius: var(--radius-xs); background: var(--color-brand-400); }
+.sizer { color: var(--fg-muted); line-height: 1; }
+
+.tiles { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.tile {
+  width: 88px; height: 88px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1);
+  background: var(--bg-sunken);
+  border: var(--borderWidth-thin) solid var(--border-default);
+  color: var(--fg-muted); font: inherit; font-size: var(--font-size-2xs);
+  font-family: var(--font-family-mono), monospace;
+}
+.tile.stroke { border-style: solid; border-color: var(--border-strong); border-radius: var(--radius-md); }
+.tile code { color: var(--fg-subtle); }
+
+.elevs { display: flex; flex-wrap: wrap; gap: var(--space-6); margin-bottom: var(--space-6); }
+.elev {
+  width: 150px; height: 96px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1);
+  background: var(--bg-surface); border: var(--borderWidth-thin) solid var(--border-subtle);
+  border-radius: var(--radius-lg); color: var(--fg-default); font: inherit;
+}
+.elev b { font-size: var(--font-size-sm); font-weight: 500; }
+.elev code { font-size: var(--font-size-2xs); color: var(--fg-subtle); }
+
+/* ---------- component demos ---------- */
+.demo {
+  padding: var(--space-6);
+  background: var(--bg-sunken);
+  border: var(--borderWidth-thin) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; gap: var(--space-4);
+}
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--button-gap);
+  height: var(--button-md-height);
+  padding: 0 var(--button-md-padding-x);
+  border-radius: var(--button-radius);
+  border: var(--button-border-width) solid transparent;
+  font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-sm); font-weight: 500;
+  cursor: pointer;
+}
+.btn.sm { height: var(--button-sm-height); padding: 0 var(--button-sm-padding-x); font-size: var(--font-size-xs); }
+.btn.lg { height: var(--button-lg-height); padding: 0 var(--button-lg-padding-x); font-size: var(--font-size-md); }
+.btn.primary { background: var(--action-primary-bg); color: var(--action-primary-fg); }
+.btn.primary:hover { background: var(--action-primary-bg-hover); }
+.btn.primary:active { background: var(--action-primary-bg-active); }
+.btn.primary:disabled { background: var(--action-primary-bg-disabled); color: var(--action-primary-fg-disabled); cursor: default; }
+.btn.secondary { background: var(--action-secondary-bg); border-color: var(--action-secondary-border); color: var(--action-secondary-fg); }
+.btn.secondary:hover { background: var(--action-secondary-bg-hover); }
+.btn.ghost { background: var(--action-ghost-bg); color: var(--action-ghost-fg); }
+.btn.ghost:hover { background: var(--action-ghost-bg-hover); }
+.btn.destructive { background: var(--action-destructive-bg); color: var(--action-destructive-fg); }
+.btn.destructive:hover { background: var(--action-destructive-bg-hover); }
+
+.field { display: flex; flex-direction: column; gap: var(--input-gap); max-width: 340px; }
+.field label { font-size: var(--font-size-sm); font-weight: 500; }
+.field input {
+  height: var(--input-height); padding: 0 var(--input-padding-x);
+  border-radius: var(--input-radius);
+  border: var(--input-border-width) solid var(--input-border);
+  background: var(--input-bg); color: var(--input-fg);
+  font-family: var(--font-family-body), sans-serif; font-size: var(--font-size-sm);
+}
+.field input::placeholder { color: var(--input-placeholder); }
+.field input:hover { border-color: var(--field-border-hover); }
+.field input:focus { border-color: var(--field-border-focus); outline: none; box-shadow: 0 0 0 3px var(--bg-selected); }
+.field .help { font-size: var(--font-size-xs); color: var(--fg-subtle); }
+.field.error input { border-color: var(--field-border-error); }
+.field.error .help { color: var(--status-danger-fg); }
+
+.cards { flex-direction: row; flex-wrap: wrap; }
+.card {
+  flex: 1 1 260px;
+  background: var(--card-bg);
+  border: var(--card-border-width) solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--elevation-raised);
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--card-gap);
+}
+.card h4 { margin: 0; font-family: var(--font-family-display), sans-serif;
+  font-size: var(--font-size-xl); font-weight: 600; color: var(--fg-default); }
+.card p { margin: 0; color: var(--fg-muted); font-size: var(--font-size-sm); }
+
+.badges { flex-direction: row; flex-wrap: wrap; }
+.badge {
+  display: inline-flex; align-items: center;
+  height: var(--badge-height); padding: 0 var(--badge-padding-x);
+  border-radius: var(--badge-radius);
+  font-size: var(--font-size-xs); font-weight: 500;
+  border: var(--borderWidth-thin) solid transparent;
+}
+.badge.success { background: var(--status-success-surface); color: var(--status-success-fg); border-color: var(--status-success-border); }
+.badge.warning { background: var(--status-warning-surface); color: var(--status-warning-fg); border-color: var(--status-warning-border); }
+.badge.danger  { background: var(--status-danger-surface);  color: var(--status-danger-fg);  border-color: var(--status-danger-border); }
+.badge.info    { background: var(--status-info-surface);    color: var(--status-info-fg);    border-color: var(--status-info-border); }
+
+.menu {
+  width: 240px; padding: var(--menu-padding);
+  background: var(--menu-bg); border-radius: var(--menu-radius);
+  box-shadow: var(--elevation-overlay);
+  border: var(--borderWidth-thin) solid var(--border-subtle);
+  display: flex; flex-direction: column;
+}
+.menu-item {
+  height: var(--menu-item-height); padding: 0 var(--menu-item-padding-x);
+  border-radius: var(--menu-item-radius);
+  border: 0; background: transparent; cursor: pointer; text-align: left;
+  color: var(--fg-default); font-family: var(--font-family-body), sans-serif;
+  font-size: var(--font-size-sm);
+}
+.menu-item:hover { background: var(--bg-hover); }
+.menu-item.danger { color: var(--status-danger-fg); }
+
+.motion { flex-direction: row; flex-wrap: wrap; }
+.moves {
+  width: 108px; height: 72px; cursor: pointer;
+  border: var(--borderWidth-thin) solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface); color: var(--fg-muted);
+  transition-property: background-color, color, transform;
+  transition-timing-function: var(--easing-standard);
+}
+.moves:hover { background: var(--color-brand-500); color: var(--color-neutral-0); transform: translateY(-4px); }
+.moves code { font-size: var(--font-size-2xs); }
+
+/* ---------- toast ---------- */
+#toast {
+  position: fixed; bottom: var(--space-6); right: var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-inverse); color: var(--fg-inverse);
+  border-radius: var(--radius-md); box-shadow: var(--elevation-overlay);
+  font-family: var(--font-family-mono), monospace; font-size: var(--font-size-xs);
+  opacity: 0; transform: translateY(6px); pointer-events: none;
+  transition: opacity var(--duration-fast) var(--easing-standard),
+              transform var(--duration-fast) var(--easing-standard);
+}
+#toast.show { opacity: 1; transform: none; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  body { flex-direction: column; align-items: stretch; }
+  aside {
+    position: static; width: 100%; height: auto;
+    border-right: 0; border-bottom: var(--borderWidth-thin) solid var(--border-subtle);
+  }
+  main { width: 100%; }
+  .nav { flex-direction: row; flex-wrap: wrap; gap: var(--space-1); }
+  .nav a { border-left: 0; border-bottom: var(--borderWidth-thick) solid transparent; border-radius: var(--radius-sm); }
+  .nav a[aria-current="true"] { border-left-color: transparent; border-bottom-color: var(--border-brand); }
+  .legend { display: none; }
+  main { padding: var(--space-8) var(--space-4) var(--space-16); }
+  .hero, .type-row { grid-template-columns: 1fr; }
+  .scale-row { grid-template-columns: 150px minmax(0, 1fr) auto; }
+}
+</style>
+</head>
+<body>
+
+<aside>
+  <h1 class="wordmark">Design tokens<span>specimen</span></h1>
+
+  <div class="toggle" role="group" aria-label="Colour mode">
+    <button id="mode-light" aria-pressed="true">Light</button>
+    <button id="mode-dark" aria-pressed="false">Dark</button>
+  </div>
+
+  <nav class="nav"><!--NAV--></nav>
+
+  <details class="panel" id="panel">
+    <summary>Customise</summary>
+
+    <label class="ctl" for="brand-input">Brand colour</label>
+    <div class="brand-pick">
+      <input type="color" id="brand-color" value="#4A63F0" aria-label="Brand colour picker">
+      <input type="text" id="brand-input" value="#4A63F0" spellcheck="false" aria-label="Brand colour hex">
+    </div>
+    <p class="hint" id="brand-note"></p>
+
+    <label class="ctl" for="font-display">Display</label>
+    <select id="font-display"></select>
+    <label class="ctl" for="font-body">Body</label>
+    <select id="font-body"></select>
+    <label class="ctl" for="font-mono">Mono</label>
+    <select id="font-mono"></select>
+
+    <div class="panel-actions">
+      <button class="btn primary sm" id="export">Export .zip</button>
+      <button class="btn secondary sm" id="save" hidden>Save to project</button>
+      <button class="btn ghost sm" id="reset">Reset</button>
+    </div>
+    <p class="hint" id="save-note"></p>
+  </details>
+
+  <p class="legend">Click any token name<br>to copy its CSS variable.</p>
+</aside>
+
+<main>
+  <p id="font-warning" class="font-warning" role="status" hidden></p>
+
+  <div class="intro">
+    <h1>Three tiers, one source</h1>
+    <p>Every value on this page is generated from the same JSON that imports into Figma —
+    primitives hold raw values, semantic tokens assign them jobs, and component tokens
+    compose those roles. Each specimen shows its full resolution chain, so you can trace
+    any colour back to the primitive it came from.</p>
+  </div>
+
+  <!--BODY-->
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script type="application/json" id="token-data">/*TOKENDATA*/</script>
+
+<script>
+  var root = document.documentElement;
+
+  // Mode toggle — starts from the OS preference, then follows the buttons.
+  var lightBtn = document.getElementById('mode-light');
+  var darkBtn = document.getElementById('mode-dark');
+
+  function setMode(mode) {
+    root.dataset.theme = mode;
+    lightBtn.setAttribute('aria-pressed', String(mode === 'light'));
+    darkBtn.setAttribute('aria-pressed', String(mode === 'dark'));
+  }
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    setMode('dark');
+  }
+  lightBtn.addEventListener('click', function () { setMode('light'); });
+  darkBtn.addEventListener('click', function () { setMode('dark'); });
+
+  // Copy a token name to the clipboard.
+  var toast = document.getElementById('toast');
+  var toastTimer;
+
+  function flash(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1600);
+  }
+
+  document.addEventListener('click', function (event) {
+    var target = event.target.closest('[data-copy]');
+    if (!target) return;
+    var text = target.getAttribute('data-copy');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () { flash('Copied ' + text); },
+        function () { flash(text); }
+      );
+    } else {
+      flash(text);
+    }
+  });
+
+  // Highlight the section currently in view.
+  var links = {};
+  document.querySelectorAll('[data-nav]').forEach(function (a) {
+    links[a.getAttribute('data-nav')] = a;
+  });
+
+  var sections = [].slice.call(document.querySelectorAll('section[id]'));
+
+  function syncNav() {
+    // The active section is the last one whose top has passed the reading line.
+    var line = window.scrollY + window.innerHeight * 0.25;
+    var current = sections[0].id;
+    sections.forEach(function (s) {
+      if (s.getBoundingClientRect().top + window.scrollY <= line) current = s.id;
+    });
+    Object.keys(links).forEach(function (id) {
+      links[id].setAttribute('aria-current', String(id === current));
+    });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { syncNav(); ticking = false; });
+  }, { passive: true });
+  window.addEventListener('resize', syncNav);
+  syncNav();
+
+  /* ------------------------------------------------------------------ *
+   * Customise panel
+   *
+   * Editing the brand colour re-derives the whole ramp in OKLCH: the new
+   * hue and chroma are adopted, but each step keeps the lightness of the
+   * step it replaces. Lightness is what drives contrast, so the AA results
+   * documented in the README survive a rebrand.
+   * ------------------------------------------------------------------ */
+
+  var DATA = JSON.parse(document.getElementById('token-data').textContent);
+  var ORIGINAL = JSON.parse(JSON.stringify({ brand: DATA.brandRamp, fonts: DATA.fonts }));
+  var state = { brand: Object.assign({}, DATA.brandRamp), fonts: Object.assign({}, DATA.fonts) };
+
+  // --- colour maths (sRGB <-> OKLab) ---
+
+  function srgbToLinear(c) { return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  function linearToSrgb(c) { return c <= 0.0031308 ? c * 12.92 : 1.055 * Math.pow(c, 1 / 2.4) - 0.055; }
+
+  function hexToRgb(hex) {
+    var h = hex.replace('#', '');
+    return [parseInt(h.slice(0, 2), 16) / 255, parseInt(h.slice(2, 4), 16) / 255, parseInt(h.slice(4, 6), 16) / 255];
+  }
+  function rgbToHex(rgb) {
+    return '#' + rgb.map(function (v) {
+      var n = Math.round(Math.min(1, Math.max(0, v)) * 255).toString(16).toUpperCase();
+      return n.length === 1 ? '0' + n : n;
+    }).join('');
+  }
+
+  function rgbToOklab(rgb) {
+    var r = srgbToLinear(rgb[0]), g = srgbToLinear(rgb[1]), b = srgbToLinear(rgb[2]);
+    var l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+    var m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+    var s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+    return [
+      0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
+      1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
+      0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s
+    ];
+  }
+
+  function oklabToRgb(lab) {
+    var l = Math.pow(lab[0] + 0.3963377774 * lab[1] + 0.2158037573 * lab[2], 3);
+    var m = Math.pow(lab[0] - 0.1055613458 * lab[1] - 0.0638541728 * lab[2], 3);
+    var s = Math.pow(lab[0] - 0.0894841775 * lab[1] - 1.2914855480 * lab[2], 3);
+    return [
+      linearToSrgb(+4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
+      linearToSrgb(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
+      linearToSrgb(-0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s)
+    ];
+  }
+
+  function toLch(hex) {
+    var lab = rgbToOklab(hexToRgb(hex));
+    return { L: lab[0], C: Math.hypot(lab[1], lab[2]), h: Math.atan2(lab[2], lab[1]) };
+  }
+
+  function inGamut(rgb) {
+    return rgb.every(function (v) { return v >= -0.001 && v <= 1.001; });
+  }
+
+  function fromLch(L, C, h) {
+    // Reduce chroma until the colour fits in sRGB, so no step clips.
+    var lo = 0, hi = C, rgb = oklabToRgb([L, C * Math.cos(h), C * Math.sin(h)]);
+    if (inGamut(rgb)) return rgbToHex(rgb);
+    for (var i = 0; i < 24; i++) {
+      var mid = (lo + hi) / 2;
+      rgb = oklabToRgb([L, mid * Math.cos(h), mid * Math.sin(h)]);
+      if (inGamut(rgb)) lo = mid; else hi = mid;
+    }
+    return rgbToHex(oklabToRgb([L, lo * Math.cos(h), lo * Math.sin(h)]));
+  }
+
+  function buildRamp(pickedHex) {
+    var picked = toLch(pickedHex);
+    var reference = {};
+    DATA.brandSteps.forEach(function (step) { reference[step] = toLch(ORIGINAL.brand[step]); });
+
+    // Anchor on whichever step sits closest in lightness to the picked colour.
+    var anchor = DATA.brandSteps[0];
+    DATA.brandSteps.forEach(function (step) {
+      if (Math.abs(reference[step].L - picked.L) < Math.abs(reference[anchor].L - picked.L)) anchor = step;
+    });
+
+    var scale = reference[anchor].C > 0.001 ? picked.C / reference[anchor].C : 1;
+    var ramp = {};
+    DATA.brandSteps.forEach(function (step) {
+      ramp[step] = step === anchor
+        ? pickedHex.toUpperCase()
+        : fromLch(reference[step].L, reference[step].C * scale, picked.h);
+    });
+    return { ramp: ramp, anchor: anchor };
+  }
+
+  // --- contrast, so a rebrand can't quietly break AA ---
+
+  function relLum(hex) {
+    var rgb = hexToRgb(hex).map(srgbToLinear);
+    return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+  }
+  function ratio(a, b) {
+    var x = relLum(a), y = relLum(b);
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+  }
+
+  // --- apply to the page ---
+
+  // Fonts are the one part of this page that can fail silently — a missing
+  // fonts/ folder just falls back to system faces and misrepresents the type.
+  // Say so out loud instead.
+  //
+  // This tests whether a face is *declared* (i.e. fonts.css loaded and its
+  // @font-face rules parsed), not whether it has loaded. document.fonts.check()
+  // is the obvious call here and it's the wrong one: it returns false for a
+  // perfectly healthy face that simply hasn't been needed on screen yet.
+  function checkFonts() {
+    if (!document.fonts) return;
+    document.fonts.ready.then(function () {
+      var declared = {};
+      document.fonts.forEach(function (face) {
+        var family = face.family.replace(/['"]/g, '');
+        if (!declared[family]) declared[family] = [];
+        declared[family].push(face.status);
+      });
+
+      var missing = [], broken = [];
+      ['display', 'body', 'mono'].forEach(function (slot) {
+        var family = state.fonts[slot];
+        var statuses = declared[family];
+        if (!statuses) missing.push(family);
+        else if (statuses.every(function (s) { return s === 'error'; })) broken.push(family);
+      });
+
+      var banner = document.getElementById('font-warning');
+      if (!missing.length && !broken.length) { banner.hidden = true; return; }
+
+      banner.hidden = false;
+      var lines = [];
+      if (missing.length) {
+        lines.push('No @font-face rule for: ' + missing.join(', ') + '.');
+      }
+      if (broken.length) {
+        lines.push('Font files failed to load for: ' + broken.join(', ') + '.');
+      }
+      lines.push('The specimen is falling back to system fonts. Check that fonts/fonts.css ' +
+                 'and its font files exist, run build_fonts.py after adding any, and view this ' +
+                 'through serve.py rather than opening the file directly.');
+      banner.textContent = lines.join(' ');
+    });
+  }
+
+  var DARK_CANVAS = '#0E1118'; // neutral/950, what bg/canvas resolves to in dark
+
+  function apply() {
+    var root = document.documentElement;
+    DATA.brandSteps.forEach(function (step) {
+      root.style.setProperty('--color-brand-' + step, state.brand[step]);
+    });
+    ['display', 'body', 'mono'].forEach(function (slot) {
+      root.style.setProperty('--font-family-' + slot, "'" + state.fonts[slot] + "'");
+    });
+
+    // Hex labels are literal text, so refresh any that resolve to a brand step.
+    document.querySelectorAll('[data-resolves]').forEach(function (el) {
+      var path = el.getAttribute('data-resolves');
+      if (path.indexOf('color.brand.') !== 0) return;
+      el.textContent = state.brand[path.split('.').pop()];
+    });
+
+    // Live contrast readout on the brand hero pairs.
+    var white = '#FFFFFF', deep = ORIGINAL.brand['800'];
+    var pairs = document.querySelectorAll('.hero-pairs .pair span');
+    if (pairs[0]) pairs[0].textContent = 'brand/600 · white · ' + ratio(state.brand['600'], white).toFixed(2) + ':1';
+    if (pairs[1]) pairs[1].textContent = 'brand/50 · brand/800 · ' + ratio(state.brand['50'], state.brand['800']).toFixed(2) + ':1';
+
+    // Live contrast readout. These are the pairings the brand ramp actually
+    // creates: solid buttons carry white text, and brand/300 is link text on
+    // the dark canvas. Checking brand against the canvas would be meaningless —
+    // it is a fill, not body text.
+    var lightButton = ratio(state.brand['600'], '#FFFFFF');
+    var darkButton = ratio(state.brand['500'], '#FFFFFF');
+    var darkLink = ratio(state.brand['300'], DARK_CANVAS);
+    var worst = Math.min(lightButton, darkButton, darkLink);
+
+    var note = document.getElementById('brand-note');
+    note.className = 'hint ' + (worst >= 4.5 ? 'ok' : 'warn');
+    note.textContent =
+      'white on primary — light ' + lightButton.toFixed(2) + ':1, dark ' + darkButton.toFixed(2) +
+      ':1 · link on dark ' + darkLink.toFixed(2) + ':1' +
+      (worst >= 4.5 ? ' — all clear AA.' : ' — one is below AA for body text.');
+
+    checkFonts();
+  }
+
+  // --- controls ---
+
+  var colorInput = document.getElementById('brand-color');
+  var hexInput = document.getElementById('brand-input');
+
+  function setBrand(hex, syncInputs) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
+    var built = buildRamp(hex.toUpperCase());
+    state.brand = built.ramp;
+    if (syncInputs) { colorInput.value = hex; hexInput.value = hex.toUpperCase(); }
+    apply();
+  }
+
+  colorInput.value = ORIGINAL.brand['500'];
+  hexInput.value = ORIGINAL.brand['500'];
+  colorInput.addEventListener('input', function () { setBrand(colorInput.value, false); hexInput.value = colorInput.value.toUpperCase(); });
+  hexInput.addEventListener('change', function () { setBrand(hexInput.value.trim(), true); });
+
+  ['display', 'body', 'mono'].forEach(function (slot) {
+    var select = document.getElementById('font-' + slot);
+    var options = DATA.families[slot].slice();
+    if (options.indexOf(state.fonts[slot]) === -1) options.unshift(state.fonts[slot]);
+    options.forEach(function (family) {
+      var option = document.createElement('option');
+      option.value = family;
+      option.textContent = family;
+      option.selected = family === state.fonts[slot];
+      select.appendChild(option);
+    });
+    select.addEventListener('change', function () {
+      state.fonts[slot] = select.value;
+      apply();
+    });
+  });
+
+  document.getElementById('reset').addEventListener('click', function () {
+    state = { brand: Object.assign({}, ORIGINAL.brand), fonts: Object.assign({}, ORIGINAL.fonts) };
+    colorInput.value = ORIGINAL.brand['500'];
+    hexInput.value = ORIGINAL.brand['500'];
+    ['display', 'body', 'mono'].forEach(function (slot) {
+      document.getElementById('font-' + slot).value = ORIGINAL.fonts[slot];
+    });
+    apply();
+    flash('Reset to defaults');
+  });
+
+  // --- export ---
+
+  function patchedFiles() {
+    var files = JSON.parse(JSON.stringify(DATA.files));
+
+    var core = files['core.json'];
+    DATA.brandSteps.forEach(function (step) { core.color.brand[step].$value = state.brand[step]; });
+    ['display', 'body', 'mono'].forEach(function (slot) { core.font.family[slot].$value = state.fonts[slot]; });
+
+    var figma = files['figma-variables.json'];
+    figma.collections.forEach(function (collection) {
+      collection.variables.forEach(function (v) {
+        var brandMatch = /^color\/brand\/(\d+)$/.exec(v.name);
+        if (brandMatch) v.values.Value = state.brand[brandMatch[1]];
+        var fontMatch = /^font\/family\/(display|body|mono)$/.exec(v.name);
+        if (fontMatch) v.values.Value = state.fonts[fontMatch[1]];
+      });
+    });
+    (figma.textStyles || []).forEach(function (style, i) {
+      var slot = DATA.textStyleSlots[i];
+      if (slot) style.fontFamily = state.fonts[slot];
+    });
+
+    var out = {};
+    Object.keys(files).forEach(function (name) { out[name] = JSON.stringify(files[name], null, 2) + '\n'; });
+    return out;
+  }
+
+  // Minimal store-only ZIP writer — avoids pulling in a library.
+  var CRC_TABLE = (function () {
+    var table = new Uint32Array(256);
+    for (var n = 0; n < 256; n++) {
+      var c = n;
+      for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1;
+      table[n] = c >>> 0;
+    }
+    return table;
+  })();
+
+  function crc32(bytes) {
+    var c = 0xFFFFFFFF;
+    for (var i = 0; i < bytes.length; i++) c = CRC_TABLE[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+
+  function zip(entries) {
+    var encoder = new TextEncoder();
+    var chunks = [], central = [], offset = 0;
+
+    function u32(n) { return [n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255]; }
+    function u16(n) { return [n & 255, (n >>> 8) & 255]; }
+
+    Object.keys(entries).forEach(function (name) {
+      var nameBytes = encoder.encode(name);
+      var data = encoder.encode(entries[name]);
+      var sum = crc32(data);
+      var header = [].concat([0x50, 0x4B, 0x03, 0x04], u16(20), u16(0), u16(0), u16(0), u16(0),
+        u32(sum), u32(data.length), u32(data.length), u16(nameBytes.length), u16(0));
+      chunks.push(new Uint8Array(header), nameBytes, data);
+      central.push({ name: nameBytes, crc: sum, size: data.length, offset: offset });
+      offset += header.length + nameBytes.length + data.length;
+    });
+
+    var dirStart = offset, dir = [];
+    central.forEach(function (e) {
+      var rec = [].concat([0x50, 0x4B, 0x01, 0x02], u16(20), u16(20), u16(0), u16(0), u16(0), u16(0),
+        u32(e.crc), u32(e.size), u32(e.size), u16(e.name.length), u16(0), u16(0), u16(0), u16(0),
+        u32(0), u32(e.offset));
+      dir.push(new Uint8Array(rec), e.name);
+      offset += rec.length + e.name.length;
+    });
+    var end = new Uint8Array([].concat([0x50, 0x4B, 0x05, 0x06], u16(0), u16(0),
+      u16(central.length), u16(central.length), u32(offset - dirStart), u32(dirStart), u16(0)));
+
+    return new Blob(chunks.concat(dir, [end]), { type: 'application/zip' });
+  }
+
+  document.getElementById('export').addEventListener('click', function () {
+    var blob = zip(patchedFiles());
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'design-tokens.zip';
+    link.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    flash('Exported design-tokens.zip');
+  });
+
+  // "Save to project" only works behind serve.py, so only show it there.
+  var saveButton = document.getElementById('save');
+  var saveNote = document.getElementById('save-note');
+  if (location.protocol === 'http:' || location.protocol === 'https:') {
+    saveButton.hidden = false;
+    saveButton.addEventListener('click', function () {
+      saveButton.disabled = true;
+      saveNote.className = 'hint';
+      saveNote.textContent = 'Saving…';
+      fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ files: patchedFiles() })
+      }).then(function (r) { return r.json(); }).then(function (result) {
+        saveButton.disabled = false;
+        if (!result.ok) throw new Error(result.error || 'save failed');
+        saveNote.className = 'hint ok';
+        saveNote.textContent = result.skipped && result.skipped.length
+          ? 'Wrote ' + result.written.length + ' token files. ' + result.skipped.join(' and ') +
+            ' not found, so preview.html was not regenerated.'
+          : 'Wrote ' + result.written.length + ' token files and rebuilt. Reload to see the regenerated page.';
+      }).catch(function (err) {
+        saveButton.disabled = false;
+        saveNote.className = 'hint warn';
+        saveNote.textContent = String(err.message || err);
+      });
+    });
+  } else {
+    saveNote.textContent = 'Run serve.py to save changes straight to the token files.';
+  }
+
+  apply();
+</script>
+</body>
+</html>

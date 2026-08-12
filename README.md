@@ -1,7 +1,14 @@
 # Design token system
 
 A three-tier token system that imports into Figma as native variables, using a small
-MIT-style importer plugin included here.
+MIT-style importer plugin maintained in its own repo:
+[itroy/figma-tokens-plugin](https://github.com/itroy/figma-tokens-plugin).
+
+This repo owns the token source and `build.py`, which compiles it down to
+`figma-variables.json` — that file is the handoff point. The plugin repo consumes it and
+knows nothing about `core.json`, `semantic/*.json`, or `component.json`; everything it
+needs to build Figma variables, text styles, and effect styles is already resolved into
+that one JSON file.
 
 ___
 
@@ -30,7 +37,6 @@ design-tokens/
 ├── component.json          component-level tokens
 ├── build.py                compiles the above into ↓
 ├── figma-variables.json    generated — this is what you import
-├── figma-plugin/           the importer (manifest.json, code.js, ui.html)
 ├── preview.py              generates ↓ from the same token source
 ├── preview.template.html   the preview's shell and styling
 ├── preview.html            generated
@@ -125,11 +131,15 @@ the three tiers, and the export is a decent demonstration of it.
 
 ## Import into Figma
 
+The importer plugin lives in a separate repo:
+[itroy/figma-tokens-plugin](https://github.com/itroy/figma-tokens-plugin). Clone it
+alongside this one.
+
 1. Open the Figma **desktop app** (local plugins don't run in the browser).
 2. Menu → **Plugins → Development → Import plugin from manifest…** and select
-   `figma-plugin/manifest.json`. You only do this once.
+   `manifest.json` from the plugin repo. You only do this once.
 3. Open the file you want the variables in, then **Plugins → Development → Token Importer**.
-4. Drop `figma-variables.json` onto the window and hit **Import**.
+4. Drop this repo's `figma-variables.json` onto the window and hit **Import**.
 
 You'll get three collections — `Primitives`, `Semantic` (with Light and Dark modes),
 and `Component` — plus 12 text styles and 6 effect styles. 283 variables in total.

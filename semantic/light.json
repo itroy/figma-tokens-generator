@@ -72,6 +72,11 @@
       "$type": "color",
       "$description": "Text on a filled accent surface."
     },
+    "on-highlight": {
+      "$value": "{color.neutral.900}",
+      "$type": "color",
+      "$description": "Text on highlight/{step}/fill. Identical in both modes by design — fill values are already light in both modes, so a mode-aware foreground would break contrast in dark mode."
+    },
     "inverse": {
       "$value": "{color.neutral.0}",
       "$type": "color"

@@ -349,6 +349,120 @@
       }
     }
   },
+  "highlight": {
+    "brand": {
+      "surface": {
+        "$value": "{color.brand.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.brand.300}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.brand.700}",
+        "$type": "color"
+      }
+    },
+    "mono": {
+      "surface": {
+        "$value": "{color.highlight.dust.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.highlight.dust.400}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.highlight.dust.700}",
+        "$type": "color"
+      }
+    },
+    "hushed": {
+      "surface": {
+        "$value": "{color.highlight.peach.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.highlight.peach.400}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.highlight.peach.700}",
+        "$type": "color"
+      }
+    },
+    "muted": {
+      "surface": {
+        "$value": "{color.highlight.mint.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.highlight.mint.400}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.highlight.mint.700}",
+        "$type": "color"
+      }
+    },
+    "base": {
+      "surface": {
+        "$value": "{color.highlight.green.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.highlight.green.500}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.highlight.green.700}",
+        "$type": "color"
+      }
+    },
+    "vivid": {
+      "surface": {
+        "$value": "{color.highlight.turquoise.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.highlight.turquoise.500}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.highlight.turquoise.700}",
+        "$type": "color"
+      }
+    },
+    "stark": {
+      "surface": {
+        "$value": "{color.highlight.coral.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.highlight.coral.500}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.highlight.coral.700}",
+        "$type": "color"
+      }
+    },
+    "zany": {
+      "surface": {
+        "$value": "{color.highlight.chartreuse.100}",
+        "$type": "color"
+      },
+      "fill": {
+        "$value": "{color.highlight.chartreuse.500}",
+        "$type": "color"
+      },
+      "fg": {
+        "$value": "{color.highlight.chartreuse.700}",
+        "$type": "color"
+      }
+    }
+  },
   "elevation": {
     "flat": {
       "$type": "boxShadow",

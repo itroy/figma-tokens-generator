@@ -330,6 +330,190 @@
         "$type": "color"
       }
     },
+    "highlight": {
+      "dust": {
+        "100": {
+          "$value": "#F2F1EF",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#DCDAD6",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#C4C2BD",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#A8A6A1",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#6B6965",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#2E3038",
+          "$type": "color"
+        }
+      },
+      "peach": {
+        "100": {
+          "$value": "#FDF0E6",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#FFD9BC",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#FFCDA8",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#E0A97F",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#8E6647",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#33261C",
+          "$type": "color"
+        }
+      },
+      "mint": {
+        "100": {
+          "$value": "#E8F7EF",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#C4EDD8",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#A8E6C8",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#7FB89A",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#47725C",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#1E2C26",
+          "$type": "color"
+        }
+      },
+      "green": {
+        "100": {
+          "$value": "#E2F9EA",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#93EBB1",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#5FDD8B",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#3ED66B",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#1E7A40",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#0F2E1D",
+          "$type": "color"
+        }
+      },
+      "turquoise": {
+        "100": {
+          "$value": "#DEF9F5",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#7FEBDD",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#4CE2D0",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#2FD6C4",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#16786D",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#0B2E2A",
+          "$type": "color"
+        }
+      },
+      "coral": {
+        "100": {
+          "$value": "#FFEBE7",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#FFA899",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#FF8272",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#FF6B5A",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#A33124",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#3A1410",
+          "$type": "color"
+        }
+      },
+      "chartreuse": {
+        "100": {
+          "$value": "#F6FBDD",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "#DCF06A",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#D4F03F",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#C2E32A",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#5A6B0D",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#262E08",
+          "$type": "color"
+        }
+      }
+    },
     "alpha": {
       "black-8": {
         "$value": "#0E111814",

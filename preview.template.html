@@ -500,6 +500,11 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
     <label class="ctl" for="font-mono">Mono</label>
     <select id="font-mono"></select>
 
+    <label class="ctl" for="include-highlights" style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer">
+      <input type="checkbox" id="include-highlights" checked>
+      Include highlights
+    </label>
+
     <div class="panel-actions">
       <button class="btn primary sm" id="export">Export .zip</button>
       <button class="btn secondary sm" id="save" hidden>Save to project</button>
@@ -612,7 +617,7 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
 
   var DATA = JSON.parse(document.getElementById('token-data').textContent);
   var ORIGINAL = JSON.parse(JSON.stringify({ brand: DATA.brandRamp, fonts: DATA.fonts }));
-  var state = { brand: Object.assign({}, DATA.brandRamp), fonts: Object.assign({}, DATA.fonts) };
+  var state = { brand: Object.assign({}, DATA.brandRamp), fonts: Object.assign({}, DATA.fonts), includeHighlights: true };
 
   // --- colour maths (sRGB <-> OKLab) ---
 
@@ -830,13 +835,19 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
     });
   });
 
+  var includeHighlightsInput = document.getElementById('include-highlights');
+  includeHighlightsInput.addEventListener('change', function () {
+    state.includeHighlights = includeHighlightsInput.checked;
+  });
+
   document.getElementById('reset').addEventListener('click', function () {
-    state = { brand: Object.assign({}, ORIGINAL.brand), fonts: Object.assign({}, ORIGINAL.fonts) };
+    state = { brand: Object.assign({}, ORIGINAL.brand), fonts: Object.assign({}, ORIGINAL.fonts), includeHighlights: true };
     colorInput.value = ORIGINAL.brand['500'];
     hexInput.value = ORIGINAL.brand['500'];
     ['display', 'body', 'mono'].forEach(function (slot) {
       document.getElementById('font-' + slot).value = ORIGINAL.fonts[slot];
     });
+    includeHighlightsInput.checked = true;
     apply();
     flash('Reset to defaults');
   });
@@ -863,6 +874,25 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
       var slot = DATA.textStyleSlots[i];
       if (slot) style.fontFamily = state.fonts[slot];
     });
+
+    if (!state.includeHighlights) {
+      delete core.color.highlight;
+
+      var semanticLight = files['semantic/light.json'];
+      var semanticDark = files['semantic/dark.json'];
+      delete semanticLight.highlight;
+      delete semanticDark.highlight;
+      if (semanticLight.fg) delete semanticLight.fg['on-highlight'];
+      if (semanticDark.fg) delete semanticDark.fg['on-highlight'];
+
+      figma.collections.forEach(function (collection) {
+        collection.variables = collection.variables.filter(function (v) {
+          return !/^color\/highlight\//.test(v.name)
+            && !/^highlight\//.test(v.name)
+            && v.name !== 'fg/on-highlight';
+        });
+      });
+    }
 
     var out = {};
     Object.keys(files).forEach(function (name) { out[name] = JSON.stringify(files[name], null, 2) + '\n'; });

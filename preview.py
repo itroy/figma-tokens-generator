@@ -216,6 +216,60 @@ brand_body = brand_hero + f'<div class="ramps">{ramp("brand", "color/brand")}</d
                                    "action.primary.bg-active", "action.primary.fg")],
 )
 
+# Highlights ------------------------------------------------------------------
+
+HIGHLIGHT_PRIMITIVE_RAMPS = [
+    ("highlight.dust", "color/highlight/dust"),
+    ("highlight.peach", "color/highlight/peach"),
+    ("highlight.mint", "color/highlight/mint"),
+    ("highlight.green", "color/highlight/green"),
+    ("highlight.turquoise", "color/highlight/turquoise"),
+    ("highlight.coral", "color/highlight/coral"),
+    ("highlight.chartreuse", "color/highlight/chartreuse"),
+]
+HIGHLIGHT_HUES = {
+    "mono": "dust", "hushed": "peach", "muted": "mint", "base": "green",
+    "vivid": "turquoise", "stark": "coral", "zany": "chartreuse",
+}
+HIGHLIGHT_LOUDNESS_STEPS = ["mono", "hushed", "muted", "base", "vivid", "stark", "zany"]
+
+highlights_hero = f"""
+<div class="hero">
+  <div class="hero-mark">
+    <span class="hero-swatch" style="background:var(--highlight-base-fill)"></span>
+    <span class="hero-swatch" style="background:var(--highlight-vivid-fill)"></span>
+    <span class="hero-swatch" style="background:var(--highlight-zany-fill)"></span>
+  </div>
+  <div class="hero-copy">
+    <p>Eight steps, but this is <strong>not one hue at eight intensities</strong> — each
+    step is a distinct hue tuned to its own energy level. The scale describes register,
+    how loud a colour reads, not a gradient.</p>
+    <p><code>brand</code> sits first by convention, carrying the system's core brand
+    colour — it is not itself a loudness value, so the ordering
+    <code>mono → hushed → muted → base → vivid → stark → zany</code> applies to the
+    other seven steps only. <code>base</code> stays the default for an unconfigured
+    instance; <code>brand</code> is opt-in.</p>
+  </div>
+</div>
+"""
+
+
+def highlight_step_group(step, label):
+    rows = [token_row(f"highlight.{step}.{role}", light) for role in ("surface", "fill", "fg")]
+    return group(label, rows)
+
+
+highlights_body = (
+    highlights_hero
+    + f'<div class="ramps">{"".join(ramp(n, l) for n, l in HIGHLIGHT_PRIMITIVE_RAMPS)}</div>'
+    + highlight_step_group("brand", "Brand")
+    + "<h3>Loudness order — mono to zany</h3>"
+    + "".join(
+        highlight_step_group(step, f"{step} — {HIGHLIGHT_HUES[step]}")
+        for step in HIGHLIGHT_LOUDNESS_STEPS
+    )
+)
+
 # Semantic ------------------------------------------------------------------
 
 SEMANTIC_GROUPS = [
@@ -430,6 +484,8 @@ SECTIONS = [
     ("brand", "Brand", "Where the identity is decided. Everything downstream points here.", brand_body),
     ("semantic", "Semantic colour", "Roles, not values. Each token holds one meaning and two answers — "
      "toggle the mode to watch the chain re-resolve.", semantic_body),
+    ("highlights", "Highlights", "Accent colours for post categories — a register scale across eight "
+     "distinct hues, not a gradient through one.", highlights_body),
     ("type", "Typography", "Composite tokens that import as Figma text styles.", type_body),
     ("space", "Spacing", "A 4px base with two sub-steps for optical corrections.", space_body),
     ("shape", "Radius &amp; stroke", "Shape values shared across every surface and control.", shape_body),

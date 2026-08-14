@@ -50,6 +50,10 @@ core = flatten(load("core.json"))
 light = flatten(load("semantic/light.json"))
 dark = flatten(load("semantic/dark.json"))
 component = flatten(load("component.json"))
+grid_mobile = flatten(load("grid/mobile.json"))
+grid_tablet = flatten(load("grid/tablet.json"))
+grid_desktop = flatten(load("grid/desktop.json"))
+grid_wide = flatten(load("grid/wide.json"))
 
 from validate_rhythm import check_rhythm
 check_rhythm(core, component)
@@ -62,6 +66,8 @@ for path in light:
     OWNER[path] = "Semantic"
 for path in component:
     OWNER[path] = "Component"
+for path in grid_mobile:
+    OWNER[path] = "Grid"
 
 
 def var_name(path: str) -> str:
@@ -178,6 +184,17 @@ missing = set(light) ^ set(dark)
 if missing:
     sys.exit(f"Light and dark sets are out of sync: {sorted(missing)}")
 
+grid_sets = {
+    "mobile": set(grid_mobile),
+    "tablet": set(grid_tablet),
+    "desktop": set(grid_desktop),
+    "wide": set(grid_wide),
+}
+grid_union = set().union(*grid_sets.values())
+grid_missing = {name: sorted(grid_union - keys) for name, keys in grid_sets.items() if grid_union - keys}
+if grid_missing:
+    sys.exit(f"Grid mode sets are out of sync: {grid_missing}")
+
 semantic = []
 for path, token in light.items():
     token_type = token["$type"]
@@ -204,6 +221,25 @@ for path, token in component.items():
     entry = build_variable(path, token, "Component", {"Value": convert(token["$value"], token_type)})
     if entry:
         components.append(entry)
+
+# --- Grid: same names, one value per mode ------------------------------------
+
+grid = []
+for path, token in grid_mobile.items():
+    token_type = token["$type"]
+    if token_type in STYLE_TYPES:
+        continue
+    if token_type in SKIP_TYPES:
+        skipped.append((path, token_type, "percentage or non-visual value"))
+        continue
+    entry = build_variable(path, token, "Grid", {
+        "Mobile": convert(token["$value"], token_type),
+        "Tablet": convert(grid_tablet[path]["$value"], token_type),
+        "Desktop": convert(grid_desktop[path]["$value"], token_type),
+        "Wide": convert(grid_wide[path]["$value"], token_type),
+    })
+    if entry:
+        grid.append(entry)
 
 # --- Text styles ------------------------------------------------------------
 
@@ -298,6 +334,7 @@ output = {
         {"name": "Primitives", "modes": ["Value"], "variables": primitives},
         {"name": "Semantic", "modes": ["Light", "Dark"], "variables": semantic},
         {"name": "Component", "modes": ["Value"], "variables": components},
+        {"name": "Grid", "modes": ["Mobile", "Tablet", "Desktop", "Wide"], "variables": grid},
     ],
     "textStyles": text_styles,
     "effectStyles": effect_styles,

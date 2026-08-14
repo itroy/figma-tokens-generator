@@ -1,0 +1,24 @@
+{
+  "grid": {
+    "columns": {
+      "$value": 8,
+      "$type": "dimension"
+    },
+    "margin": {
+      "$value": "{space.8}",
+      "$type": "spacing"
+    },
+    "gutter": {
+      "$value": "{space.6}",
+      "$type": "spacing"
+    },
+    "container-max": {
+      "$value": "{breakpoint.md}",
+      "$type": "sizing"
+    },
+    "row": {
+      "$value": "{font.lineHeight.md}",
+      "$type": "spacing"
+    }
+  }
+}

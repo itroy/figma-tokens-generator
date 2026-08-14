@@ -5768,6 +5768,132 @@
           }
         }
       ]
+    },
+    {
+      "name": "Grid",
+      "modes": [
+        "Mobile",
+        "Tablet",
+        "Desktop",
+        "Wide"
+      ],
+      "variables": [
+        {
+          "name": "grid/columns",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--grid-columns"
+          },
+          "values": {
+            "Mobile": 4.0,
+            "Tablet": 8.0,
+            "Desktop": 12.0,
+            "Wide": 12.0
+          }
+        },
+        {
+          "name": "grid/margin",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--grid-margin"
+          },
+          "values": {
+            "Mobile": {
+              "alias": "Primitives/space/4"
+            },
+            "Tablet": {
+              "alias": "Primitives/space/8"
+            },
+            "Desktop": {
+              "alias": "Primitives/space/24"
+            },
+            "Wide": {
+              "alias": "Primitives/space/24"
+            }
+          }
+        },
+        {
+          "name": "grid/gutter",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--grid-gutter"
+          },
+          "values": {
+            "Mobile": {
+              "alias": "Primitives/space/4"
+            },
+            "Tablet": {
+              "alias": "Primitives/space/6"
+            },
+            "Desktop": {
+              "alias": "Primitives/space/6"
+            },
+            "Wide": {
+              "alias": "Primitives/space/6"
+            }
+          }
+        },
+        {
+          "name": "grid/container-max",
+          "type": "FLOAT",
+          "scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--grid-container-max"
+          },
+          "values": {
+            "Mobile": {
+              "alias": "Primitives/breakpoint/sm"
+            },
+            "Tablet": {
+              "alias": "Primitives/breakpoint/md"
+            },
+            "Desktop": {
+              "alias": "Primitives/breakpoint/xl"
+            },
+            "Wide": {
+              "alias": "Primitives/size/container/max"
+            }
+          }
+        },
+        {
+          "name": "grid/row",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--grid-row"
+          },
+          "values": {
+            "Mobile": {
+              "alias": "Primitives/font/lineHeight/md"
+            },
+            "Tablet": {
+              "alias": "Primitives/font/lineHeight/md"
+            },
+            "Desktop": {
+              "alias": "Primitives/font/lineHeight/md"
+            },
+            "Wide": {
+              "alias": "Primitives/font/lineHeight/md"
+            }
+          }
+        }
+      ]
     }
   ],
   "textStyles": [

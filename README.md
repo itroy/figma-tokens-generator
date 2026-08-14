@@ -25,7 +25,6 @@ ___
 
 #### Open Questions:
 1. Should / Could this edit functionality all live inside the Figma plugin? With Preview / Setup / Editable decision screens?
-2. Should there be grid tokens?
 
 
 ```

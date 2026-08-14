@@ -20,11 +20,11 @@ ROOT = Path(__file__).parent
 REF = re.compile(r"^\{([^}]+)\}$")
 
 # Tokens Studio / DTCG type -> Figma variable type
-FLOAT_TYPES = {"spacing", "sizing", "borderRadius", "borderWidth", "fontSizes", "dimension", "opacity"}
+FLOAT_TYPES = {"spacing", "sizing", "borderRadius", "borderWidth", "fontSizes", "dimension", "opacity", "lineHeights"}
 STRING_TYPES = {"fontFamilies", "fontWeights"}
 STYLE_TYPES = {"typography", "boxShadow"}
 # Percentage-based; Figma variables only accept absolute numbers for these
-SKIP_TYPES = {"lineHeights", "letterSpacing", "other"}
+SKIP_TYPES = {"letterSpacing", "other"}
 
 skipped: list[tuple[str, str, str]] = []
 
@@ -225,6 +225,10 @@ def percent(value):
     return {"unit": "PERCENT", "value": float(text.rstrip("%"))}
 
 
+def pixels(value):
+    return {"unit": "PIXELS", "value": float(deref(value))}
+
+
 STYLE_NAMES = {
     "display": "Display",
     "heading-xl": "Heading/XL",
@@ -251,7 +255,7 @@ for path, token in core.items():
         "fontFamily": deref(value["fontFamily"]),
         "fontStyle": deref(value["fontWeight"]),
         "fontSize": number(deref(value["fontSize"])),
-        "lineHeight": percent(value["lineHeight"]),
+        "lineHeight": pixels(value["lineHeight"]),
         "letterSpacing": percent(value["letterSpacing"]),
         "textCase": {"uppercase": "UPPER", "lowercase": "LOWER"}.get(value.get("textCase"), "ORIGINAL"),
     }

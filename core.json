@@ -819,20 +819,48 @@
       }
     },
     "lineHeight": {
-      "tight": {
-        "$value": "110%",
+      "2xs": {
+        "$value": 16,
         "$type": "lineHeights"
       },
-      "snug": {
-        "$value": "125%",
+      "xs": {
+        "$value": 16,
         "$type": "lineHeights"
       },
-      "normal": {
-        "$value": "150%",
+      "sm": {
+        "$value": 20,
         "$type": "lineHeights"
       },
-      "relaxed": {
-        "$value": "170%",
+      "md": {
+        "$value": 24,
+        "$type": "lineHeights"
+      },
+      "lg": {
+        "$value": 28,
+        "$type": "lineHeights"
+      },
+      "xl": {
+        "$value": 28,
+        "$type": "lineHeights"
+      },
+      "2xl": {
+        "$value": 32,
+        "$type": "lineHeights"
+      },
+      "3xl": {
+        "$value": 40,
+        "$type": "lineHeights"
+      },
+      "4xl": {
+        "$value": 48,
+        "$type": "lineHeights"
+      },
+      "5xl": {
+        "$value": 56,
+        "$type": "lineHeights"
+      },
+      "6xl": {
+        "$value": 72,
         "$type": "lineHeights"
       }
     },
@@ -866,7 +894,7 @@
         "fontFamily": "{font.family.display}",
         "fontWeight": "{font.weight.bold}",
         "fontSize": "{font.size.6xl}",
-        "lineHeight": "{font.lineHeight.tight}",
+        "lineHeight": "{font.lineHeight.6xl}",
         "letterSpacing": "{font.letterSpacing.tighter}"
       },
       "$description": "Hero and marketing headlines only. One per screen."
@@ -877,7 +905,7 @@
         "fontFamily": "{font.family.display}",
         "fontWeight": "{font.weight.bold}",
         "fontSize": "{font.size.4xl}",
-        "lineHeight": "{font.lineHeight.tight}",
+        "lineHeight": "{font.lineHeight.4xl}",
         "letterSpacing": "{font.letterSpacing.tight}"
       }
     },
@@ -887,7 +915,7 @@
         "fontFamily": "{font.family.display}",
         "fontWeight": "{font.weight.semibold}",
         "fontSize": "{font.size.3xl}",
-        "lineHeight": "{font.lineHeight.snug}",
+        "lineHeight": "{font.lineHeight.3xl}",
         "letterSpacing": "{font.letterSpacing.tight}"
       }
     },
@@ -897,7 +925,7 @@
         "fontFamily": "{font.family.display}",
         "fontWeight": "{font.weight.semibold}",
         "fontSize": "{font.size.2xl}",
-        "lineHeight": "{font.lineHeight.snug}",
+        "lineHeight": "{font.lineHeight.2xl}",
         "letterSpacing": "{font.letterSpacing.normal}"
       }
     },
@@ -907,7 +935,7 @@
         "fontFamily": "{font.family.display}",
         "fontWeight": "{font.weight.semibold}",
         "fontSize": "{font.size.xl}",
-        "lineHeight": "{font.lineHeight.snug}",
+        "lineHeight": "{font.lineHeight.xl}",
         "letterSpacing": "{font.letterSpacing.normal}"
       }
     },
@@ -917,7 +945,7 @@
         "fontFamily": "{font.family.body}",
         "fontWeight": "{font.weight.regular}",
         "fontSize": "{font.size.lg}",
-        "lineHeight": "{font.lineHeight.relaxed}",
+        "lineHeight": "{font.lineHeight.lg}",
         "letterSpacing": "{font.letterSpacing.normal}"
       }
     },
@@ -927,7 +955,7 @@
         "fontFamily": "{font.family.body}",
         "fontWeight": "{font.weight.regular}",
         "fontSize": "{font.size.md}",
-        "lineHeight": "{font.lineHeight.normal}",
+        "lineHeight": "{font.lineHeight.md}",
         "letterSpacing": "{font.letterSpacing.normal}"
       },
       "$description": "Default body copy."
@@ -938,7 +966,7 @@
         "fontFamily": "{font.family.body}",
         "fontWeight": "{font.weight.regular}",
         "fontSize": "{font.size.sm}",
-        "lineHeight": "{font.lineHeight.normal}",
+        "lineHeight": "{font.lineHeight.sm}",
         "letterSpacing": "{font.letterSpacing.normal}"
       }
     },
@@ -948,7 +976,7 @@
         "fontFamily": "{font.family.body}",
         "fontWeight": "{font.weight.medium}",
         "fontSize": "{font.size.sm}",
-        "lineHeight": "{font.lineHeight.snug}",
+        "lineHeight": "{font.lineHeight.sm}",
         "letterSpacing": "{font.letterSpacing.normal}"
       },
       "$description": "Form labels, buttons, tabs."
@@ -959,7 +987,7 @@
         "fontFamily": "{font.family.body}",
         "fontWeight": "{font.weight.medium}",
         "fontSize": "{font.size.xs}",
-        "lineHeight": "{font.lineHeight.snug}",
+        "lineHeight": "{font.lineHeight.xs}",
         "letterSpacing": "{font.letterSpacing.normal}"
       }
     },
@@ -969,7 +997,7 @@
         "fontFamily": "{font.family.body}",
         "fontWeight": "{font.weight.semibold}",
         "fontSize": "{font.size.2xs}",
-        "lineHeight": "{font.lineHeight.snug}",
+        "lineHeight": "{font.lineHeight.2xs}",
         "letterSpacing": "{font.letterSpacing.wider}",
         "textCase": "uppercase"
       },
@@ -981,7 +1009,7 @@
         "fontFamily": "{font.family.mono}",
         "fontWeight": "{font.weight.regular}",
         "fontSize": "{font.size.sm}",
-        "lineHeight": "{font.lineHeight.normal}",
+        "lineHeight": "{font.lineHeight.sm}",
         "letterSpacing": "{font.letterSpacing.normal}"
       }
     }

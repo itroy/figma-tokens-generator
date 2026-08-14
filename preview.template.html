@@ -301,6 +301,38 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
 }
 .type-meta .spec { display: block; font-size: var(--font-size-2xs); color: var(--fg-subtle); margin-top: var(--space-half); }
 .specimen { min-width: 0; overflow-wrap: anywhere; }
+.wrap-safe {
+  display: inline-block;
+  margin-left: var(--space-1);
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-xs);
+  border: var(--borderWidth-thin) solid var(--status-success-border);
+  background: var(--status-success-surface);
+  color: var(--status-success-fg);
+  font-size: var(--font-size-2xs);
+}
+
+/* .type-stack is the baseline overlay's coordinate space: position 0 is its
+   own top edge, a fixed point independent of the heading/blurb above it. */
+.type-stack { position: relative; }
+.baseline-rule {
+  position: absolute;
+  left: 0; right: 0; height: 0;
+  border-top: 1px solid color-mix(in srgb, var(--border-brand) 35%, transparent);
+  pointer-events: none;
+}
+.type-meta { position: relative; }
+.baseline-flag {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: var(--space-half);
+  white-space: nowrap;
+  font-size: var(--font-size-2xs);
+  font-family: var(--font-family-mono), monospace;
+}
+.baseline-flag.error { color: var(--status-danger-fg); }
+.baseline-flag.neutral { color: var(--fg-subtle); }
 
 /* ---------- scales ---------- */
 .scale { display: flex; flex-direction: column; }
@@ -503,6 +535,11 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
     <label class="ctl" for="include-highlights" style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer">
       <input type="checkbox" id="include-highlights" checked>
       Include highlights
+    </label>
+
+    <label class="ctl" for="baseline-overlay" style="display:flex;align-items:center;gap:var(--space-2);cursor:pointer">
+      <input type="checkbox" id="baseline-overlay">
+      Baseline overlay
     </label>
 
     <div class="panel-actions">
@@ -840,6 +877,91 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
     state.includeHighlights = includeHighlightsInput.checked;
   });
 
+  // Baseline overlay — 24px rules anchored to the top of .type-stack (a
+  // defined point: that container holds only the rows, so position 0 isn't
+  // pushed around by the heading/blurb above it), plus a per-row measurement
+  // that flags any rendered height that isn't a multiple of 24. Off by
+  // default; purely a display aid, so it isn't part of the export.
+  var baselineOverlayInput = document.getElementById('baseline-overlay');
+  var typeStack = document.getElementById('type-stack');
+  var BASELINE_UNIT = 24;
+
+  function flagDrift(flag, height, spaceAfter) {
+    var total = height + spaceAfter;
+    var remainder = total % BASELINE_UNIT;
+    var off = Math.min(remainder, BASELINE_UNIT - remainder);
+    if (off > 0.5) {
+      var shortfall = (BASELINE_UNIT - remainder) % BASELINE_UNIT;
+      flag.hidden = false;
+      flag.className = 'baseline-flag error';
+      flag.textContent = shortfall.toFixed(1) + 'px short of a ' + BASELINE_UNIT + 'px block';
+    }
+  }
+
+  function updateBaselineOverlay() {
+    var active = baselineOverlayInput.checked;
+    typeStack.classList.toggle('show-baseline', active);
+    typeStack.querySelectorAll('.baseline-rule').forEach(function (el) { el.remove(); });
+    typeStack.querySelectorAll('.baseline-flag').forEach(function (el) {
+      el.hidden = true;
+      el.textContent = '';
+      el.className = 'baseline-flag';
+    });
+    if (!active) return;
+
+    for (var y = 0; y <= typeStack.scrollHeight; y += BASELINE_UNIT) {
+      var rule = document.createElement('div');
+      rule.className = 'baseline-rule';
+      rule.style.top = y + 'px';
+      typeStack.appendChild(rule);
+    }
+
+    // The check is on the specimen alone — .type-row's padding and mono
+    // label column aren't part of the token system. A single-line block is
+    // on-grid when its rendered height plus that size's font.spaceAfter
+    // totals a multiple of 24 (e.g. heading-lg's 40px line-height is
+    // deliberately off-grid; its 8px spaceAfter brings the block to 48,
+    // which passes). A compensating spaceAfter only resolves *one* line
+    // though — once a specimen wraps, each extra line adds a full
+    // line-height, so the block only stays on-grid line-to-line if the
+    // line-height itself is already a multiple of 24. If it isn't, that's
+    // an expected consequence of wrapping, not a token error.
+    typeStack.querySelectorAll('.type-row').forEach(function (row) {
+      var flag = row.querySelector('.baseline-flag');
+      var specimen = row.querySelector('.specimen');
+      if (!flag || !specimen) return;
+      var height = specimen.getBoundingClientRect().height;
+      var spaceAfter = parseFloat(specimen.dataset.spaceAfter || '0');
+      var lineHeight = parseFloat(specimen.dataset.lineHeight || '0');
+      var lines = lineHeight > 0 ? Math.round(height / lineHeight) : 1;
+
+      if (lines <= 1) {
+        flagDrift(flag, height, spaceAfter);
+        return;
+      }
+
+      var lhRemainder = lineHeight % BASELINE_UNIT;
+      var lineHeightSafe = Math.min(lhRemainder, BASELINE_UNIT - lhRemainder) < 0.5;
+      if (lineHeightSafe) {
+        flagDrift(flag, height, spaceAfter);
+      } else {
+        flag.hidden = false;
+        flag.className = 'baseline-flag neutral';
+        flag.textContent = 'wraps — not rhythm-safe below 24px leading';
+      }
+    });
+  }
+
+  baselineOverlayInput.addEventListener('change', updateBaselineOverlay);
+  window.addEventListener('resize', function () {
+    if (baselineOverlayInput.checked) updateBaselineOverlay();
+  });
+  if (document.fonts) {
+    document.fonts.ready.then(function () {
+      if (baselineOverlayInput.checked) updateBaselineOverlay();
+    });
+  }
+
   document.getElementById('reset').addEventListener('click', function () {
     state = { brand: Object.assign({}, ORIGINAL.brand), fonts: Object.assign({}, ORIGINAL.fonts), includeHighlights: true };
     colorInput.value = ORIGINAL.brand['500'];
@@ -848,6 +970,8 @@ section h4 { font-size: var(--font-size-xs); font-family: var(--font-family-mono
       document.getElementById('font-' + slot).value = ORIGINAL.fonts[slot];
     });
     includeHighlightsInput.checked = true;
+    baselineOverlayInput.checked = false;
+    updateBaselineOverlay();
     apply();
     flash('Reset to defaults');
   });

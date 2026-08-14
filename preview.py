@@ -41,6 +41,10 @@ core = flatten(load("core.json"))
 light = flatten(load("semantic/light.json"))
 dark = flatten(load("semantic/dark.json"))
 component = flatten(load("component.json"))
+grid_mobile = flatten(load("grid/mobile.json"))
+grid_tablet = flatten(load("grid/tablet.json"))
+grid_desktop = flatten(load("grid/desktop.json"))
+grid_wide = flatten(load("grid/wide.json"))
 
 
 def ref_target(value):
@@ -307,21 +311,36 @@ type_rows = []
 for key in TYPE_ORDER:
     token = core[f"text.{key}"]
     value = token["$value"]
-    spec = " · ".join([
+    line_height = num(core[ref_target(value["lineHeight"])]["$value"])
+    # A compensating spaceAfter only resolves the rhythm for a single line —
+    # a wrapped block only stays on-grid line-to-line if the line-height
+    # itself is a multiple of 24 (md, 4xl, 6xl in this scale).
+    wrap_safe = line_height % 24 == 0
+    spec_parts = [
         ref_target(value["fontFamily"]).split(".")[-1],
         ref_target(value["fontWeight"]).split(".")[-1],
         f'{num(core[ref_target(value["fontSize"])]["$value"]):g}px',
-        f'{num(core[ref_target(value["lineHeight"])]["$value"]):g}px leading',
+        f'{line_height:g}px leading',
         f'{num(core[ref_target(value["letterSpacing"])]["$value"]):g}% tracking',
-    ])
+    ]
+    spec = " · ".join(spec_parts)
+    wrap_marker = ' <span class="wrap-safe">wrap-safe</span>' if wrap_safe else ""
+    # font.spaceAfter shares a key with font.size, not with the text style —
+    # e.g. text.heading-lg -> font.size.3xl -> font.spaceAfter.3xl.
+    size_key = ref_target(value["fontSize"]).split(".")[-1]
+    space_after = num(core[f"font.spaceAfter.{size_key}"]["$value"])
     type_rows.append(
         f'<div class="type-row">'
         f'<div class="type-meta"><button class="tname" data-copy="text/{key}">text/{key}</button>'
-        f'<span class="spec">{escape(spec)}</span></div>'
-        f'<div class="specimen text-{key}">{escape(SPECIMEN[key])}</div>'
+        f'<span class="spec">{escape(spec)}{wrap_marker}</span>'
+        f'<span class="baseline-flag" hidden></span></div>'
+        f'<div class="specimen text-{key}" data-space-after="{space_after:g}" '
+        f'data-line-height="{line_height:g}">{escape(SPECIMEN[key])}</div>'
         f"</div>"
     )
-type_body = "".join(type_rows)
+# .type-stack is the baseline overlay's coordinate origin — position 0 is its
+# own top edge, not the section's (which would drift with the heading/blurb).
+type_body = f'<div class="type-stack" id="type-stack">{"".join(type_rows)}</div>'
 
 # Spacing -------------------------------------------------------------------
 
@@ -333,6 +352,65 @@ space_rows = "".join(
     for p, t in core.items() if p.startswith("space.")
 )
 space_body = f'<div class="scale">{space_rows}</div>'
+
+# Grid ------------------------------------------------------------------
+
+GRID_MODES = [
+    ("Mobile", grid_mobile),
+    ("Tablet", grid_tablet),
+    ("Desktop", grid_desktop),
+    ("Wide", grid_wide),
+]
+GRID_PROPS = [("columns", ""), ("margin", "px"), ("gutter", "px"), ("container-max", "px")]
+
+
+def grid_chain(path, tokens):
+    """Walk a grid.* token's alias chain — targets always land in core."""
+    steps = [path]
+    token = tokens.get(path) or core.get(path)
+    value = token["$value"]
+    while (target := ref_target(value)) is not None:
+        steps.append(target)
+        source = tokens.get(target) or core.get(target)
+        value = source["$value"]
+    return steps, value
+
+
+def grid_row(prop, unit, tokens):
+    path = f"grid.{prop}"
+    steps, literal = grid_chain(path, tokens)
+    hops = "".join(
+        f'<span class="hop">{escape(step.replace(".", "/"))}</span>'
+        f'{"<i>&rarr;</i>" if i < len(steps) - 1 else ""}'
+        for i, step in enumerate(steps)
+    )
+    value = f"{num(literal):g}{unit}"
+    return (
+        f'<div class="row">'
+        f'<div class="row-body">'
+        f'<button class="tname" data-copy="{escape(var_name(path))}">{escape(var_name(path))}</button>'
+        f'<div class="chain">{hops}<code class="literal">{escape(value)}</code></div>'
+        f"</div></div>"
+    )
+
+
+grid_hero = """
+<div class="hero" style="grid-template-columns:1fr">
+  <div class="hero-copy">
+    <p>One set of token names — <code>columns</code>, <code>margin</code>, <code>gutter</code>,
+    and <code>container-max</code> — takes a different value at each of four breakpoints. That
+    is what becomes the four modes of the <code>Grid</code> collection in Figma.</p>
+    <p><code>row</code> isn't shown per breakpoint below because it never changes: it stays
+    pinned to <code>font/lineHeight/md</code> at every mode, so the vertical rhythm never
+    drifts as the layout reflows.</p>
+  </div>
+</div>
+"""
+
+grid_body = grid_hero + "".join(
+    group(label, [grid_row(prop, unit, tokens) for prop, unit in GRID_PROPS])
+    for label, tokens in GRID_MODES
+)
 
 # Radius and stroke ---------------------------------------------------------
 
@@ -486,6 +564,8 @@ SECTIONS = [
      "distinct hues, not a gradient through one.", highlights_body),
     ("type", "Typography", "Composite tokens that import as Figma text styles.", type_body),
     ("space", "Spacing", "A 4px base with two sub-steps for optical corrections.", space_body),
+    ("grid", "Grid", "Four breakpoints, one set of names — columns, margin, gutter and "
+     "container-max scale with the viewport.", grid_body),
     ("shape", "Radius &amp; stroke", "Shape values shared across every surface and control.", shape_body),
     ("elevation", "Elevation", "Four depths, tuned separately per mode.", elevation_body),
     ("components", "Components", "The layers working together, built only from tokens.", components_body),

@@ -60,6 +60,11 @@
       "$value": "{size.control.md}",
       "$type": "sizing"
     },
+    "height-compact": {
+      "$value": "{size.control.sm}",
+      "$type": "sizing",
+      "$description": "For dense contexts (e.g. the Customise panel) where input/height bloats the layout."
+    },
     "padding-x": {
       "$value": "{space.3}",
       "$type": "spacing"

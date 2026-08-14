@@ -729,6 +729,20 @@
         "$value": 1440,
         "$type": "sizing"
       }
+    },
+    "panel": {
+      "sm": {
+        "$value": 240,
+        "$type": "sizing"
+      },
+      "md": {
+        "$value": 320,
+        "$type": "sizing"
+      },
+      "lg": {
+        "$value": 480,
+        "$type": "sizing"
+      }
     }
   },
   "radius": {

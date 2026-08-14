@@ -212,11 +212,11 @@
       "$type": "spacing"
     },
     "page-padding-y": {
-      "$value": "{space.10}",
+      "$value": "{rhythm.2}",
       "$type": "spacing"
     },
     "section-gap": {
-      "$value": "{space.16}",
+      "$value": "{rhythm.3}",
       "$type": "spacing"
     },
     "stack-gap": {

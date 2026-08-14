@@ -602,6 +602,10 @@
       "$value": 64,
       "$type": "spacing"
     },
+    "18": {
+      "$value": 72,
+      "$type": "spacing"
+    },
     "20": {
       "$value": 80,
       "$type": "spacing"
@@ -610,8 +614,16 @@
       "$value": 96,
       "$type": "spacing"
     },
+    "30": {
+      "$value": 120,
+      "$type": "spacing"
+    },
     "32": {
       "$value": 128,
+      "$type": "spacing"
+    },
+    "36": {
+      "$value": 144,
       "$type": "spacing"
     },
     "40": {
@@ -625,6 +637,38 @@
     "half": {
       "$value": 2,
       "$type": "spacing"
+    }
+  },
+  "rhythm": {
+    "1": {
+      "$value": "{space.6}",
+      "$type": "spacing",
+      "$description": "24px — 1 rhythm unit"
+    },
+    "2": {
+      "$value": "{space.12}",
+      "$type": "spacing",
+      "$description": "48px — 2 rhythm units"
+    },
+    "3": {
+      "$value": "{space.18}",
+      "$type": "spacing",
+      "$description": "72px — 3 rhythm units"
+    },
+    "4": {
+      "$value": "{space.24}",
+      "$type": "spacing",
+      "$description": "96px — 4 rhythm units"
+    },
+    "5": {
+      "$value": "{space.30}",
+      "$type": "spacing",
+      "$description": "120px — 5 rhythm units"
+    },
+    "6": {
+      "$value": "{space.36}",
+      "$type": "spacing",
+      "$description": "144px — 6 rhythm units"
     }
   },
   "size": {
@@ -884,6 +928,52 @@
       "wider": {
         "$value": "6%",
         "$type": "letterSpacing"
+      }
+    },
+    "spaceAfter": {
+      "2xs": {
+        "$value": 8,
+        "$type": "spacing"
+      },
+      "xs": {
+        "$value": 8,
+        "$type": "spacing"
+      },
+      "sm": {
+        "$value": 4,
+        "$type": "spacing"
+      },
+      "md": {
+        "$value": 24,
+        "$type": "spacing"
+      },
+      "lg": {
+        "$value": 20,
+        "$type": "spacing"
+      },
+      "xl": {
+        "$value": 20,
+        "$type": "spacing"
+      },
+      "2xl": {
+        "$value": 16,
+        "$type": "spacing"
+      },
+      "3xl": {
+        "$value": 8,
+        "$type": "spacing"
+      },
+      "4xl": {
+        "$value": 24,
+        "$type": "spacing"
+      },
+      "5xl": {
+        "$value": 16,
+        "$type": "spacing"
+      },
+      "6xl": {
+        "$value": 24,
+        "$type": "spacing"
       }
     }
   },

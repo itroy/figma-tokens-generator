@@ -51,6 +51,9 @@ light = flatten(load("semantic/light.json"))
 dark = flatten(load("semantic/dark.json"))
 component = flatten(load("component.json"))
 
+from validate_rhythm import check_rhythm
+check_rhythm(core, component)
+
 # Which collection does a given token path live in?
 OWNER = {}
 for path in core:

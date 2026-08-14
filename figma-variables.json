@@ -1866,6 +1866,20 @@
           }
         },
         {
+          "name": "space/18",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--space-18"
+          },
+          "values": {
+            "Value": 72.0
+          }
+        },
+        {
           "name": "space/20",
           "type": "FLOAT",
           "scopes": [
@@ -1894,6 +1908,20 @@
           }
         },
         {
+          "name": "space/30",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--space-30"
+          },
+          "values": {
+            "Value": 120.0
+          }
+        },
+        {
           "name": "space/32",
           "type": "FLOAT",
           "scopes": [
@@ -1905,6 +1933,20 @@
           },
           "values": {
             "Value": 128.0
+          }
+        },
+        {
+          "name": "space/36",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--space-36"
+          },
+          "values": {
+            "Value": 144.0
           }
         },
         {
@@ -1948,6 +1990,108 @@
           "values": {
             "Value": 2.0
           }
+        },
+        {
+          "name": "rhythm/1",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--rhythm-1"
+          },
+          "values": {
+            "Value": {
+              "alias": "Primitives/space/6"
+            }
+          },
+          "description": "24px \u2014 1 rhythm unit"
+        },
+        {
+          "name": "rhythm/2",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--rhythm-2"
+          },
+          "values": {
+            "Value": {
+              "alias": "Primitives/space/12"
+            }
+          },
+          "description": "48px \u2014 2 rhythm units"
+        },
+        {
+          "name": "rhythm/3",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--rhythm-3"
+          },
+          "values": {
+            "Value": {
+              "alias": "Primitives/space/18"
+            }
+          },
+          "description": "72px \u2014 3 rhythm units"
+        },
+        {
+          "name": "rhythm/4",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--rhythm-4"
+          },
+          "values": {
+            "Value": {
+              "alias": "Primitives/space/24"
+            }
+          },
+          "description": "96px \u2014 4 rhythm units"
+        },
+        {
+          "name": "rhythm/5",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--rhythm-5"
+          },
+          "values": {
+            "Value": {
+              "alias": "Primitives/space/30"
+            }
+          },
+          "description": "120px \u2014 5 rhythm units"
+        },
+        {
+          "name": "rhythm/6",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--rhythm-6"
+          },
+          "values": {
+            "Value": {
+              "alias": "Primitives/space/36"
+            }
+          },
+          "description": "144px \u2014 6 rhythm units"
         },
         {
           "name": "size/icon/xs",
@@ -2649,6 +2793,160 @@
           },
           "values": {
             "Value": 72.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/2xs",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-2xs"
+          },
+          "values": {
+            "Value": 8.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/xs",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-xs"
+          },
+          "values": {
+            "Value": 8.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/sm",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-sm"
+          },
+          "values": {
+            "Value": 4.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/md",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-md"
+          },
+          "values": {
+            "Value": 24.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/lg",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-lg"
+          },
+          "values": {
+            "Value": 20.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/xl",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-xl"
+          },
+          "values": {
+            "Value": 20.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/2xl",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-2xl"
+          },
+          "values": {
+            "Value": 16.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/3xl",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-3xl"
+          },
+          "values": {
+            "Value": 8.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/4xl",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-4xl"
+          },
+          "values": {
+            "Value": 24.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/5xl",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-5xl"
+          },
+          "values": {
+            "Value": 16.0
+          }
+        },
+        {
+          "name": "font/spaceAfter/6xl",
+          "type": "FLOAT",
+          "scopes": [
+            "GAP",
+            "WIDTH_HEIGHT"
+          ],
+          "codeSyntax": {
+            "WEB": "--font-spaceAfter-6xl"
+          },
+          "values": {
+            "Value": 24.0
           }
         },
         {
@@ -5418,7 +5716,7 @@
           },
           "values": {
             "Value": {
-              "alias": "Primitives/space/10"
+              "alias": "Primitives/rhythm/2"
             }
           }
         },
@@ -5434,7 +5732,7 @@
           },
           "values": {
             "Value": {
-              "alias": "Primitives/space/16"
+              "alias": "Primitives/rhythm/3"
             }
           }
         },

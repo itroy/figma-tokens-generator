@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 REF = re.compile(r"^\{([^}]+)\}$")
 
-PX_TYPES = {"spacing", "sizing", "borderRadius", "borderWidth", "fontSizes", "dimension"}
+PX_TYPES = {"spacing", "sizing", "borderRadius", "borderWidth", "fontSizes", "dimension", "lineHeights"}
 
 
 def load(path):
@@ -90,8 +90,6 @@ def css_value(token):
         return f"{num(value):g}px"
     if ttype == "opacity":
         return f"{num(value) / 100:g}"
-    if ttype == "lineHeights":
-        return f"{num(value):g}%"
     if ttype == "letterSpacing":
         return f"{num(value) / 100:g}em"
     if ttype == "fontFamilies":
@@ -313,7 +311,7 @@ for key in TYPE_ORDER:
         ref_target(value["fontFamily"]).split(".")[-1],
         ref_target(value["fontWeight"]).split(".")[-1],
         f'{num(core[ref_target(value["fontSize"])]["$value"]):g}px',
-        f'{num(core[ref_target(value["lineHeight"])]["$value"]):g}% leading',
+        f'{num(core[ref_target(value["lineHeight"])]["$value"]):g}px leading',
         f'{num(core[ref_target(value["letterSpacing"])]["$value"]):g}% tracking',
     ])
     type_rows.append(
